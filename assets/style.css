@@ -1,0 +1,32 @@
+#header {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    background-color: darkcyan;
+    color: whitesmoke;
+}
+
+#search {
+    background-color: whitesmoke;
+}
+
+#cityDate {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#cityDate, #temp, #hum, #WSpeed, #UV {
+    padding: 10px;
+}
+
+#forecasthead {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mini-box {
+    padding: 10px;
+    background-color: royalblue;
+    color: whitesmoke;
+}

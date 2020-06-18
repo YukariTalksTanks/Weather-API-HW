@@ -1,11 +1,13 @@
 function searchsubmit() {
-    var city = document.getElementById("citysearch").value;
-    console.log(city);
+    
+    // var city = document.getElementById("citysearch").value;
+    // console.log(city);
+
+    var city = "Atlanta";
 
     var APIKEY = "d22597ee61aff6bbcc1f2596e17825af"
-    var mainqueryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKEY;
+    var mainqueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d22597ee61aff6bbcc1f2596e17825af";
 
-    // api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
 
     $.ajax({
         url: mainqueryURL,
@@ -22,14 +24,45 @@ function searchsubmit() {
 
             var wind = response.wind;
 
+            var weatherCity = response.weather[0];
+            var cityWeather = JSON.stringify(weatherCity);
+            $("#cityDate").text(cityWeather);
+
             $("#temp").text("Temperature: " + temperature);
 
             $("#hum").text("Humidity: " + Humidity);
 
             $("#WSpeed").text("Wind Speed: " + wind.speed + " MPH");
 
+            var coord = response.coord;
+            var lon = coord.lon;
+            var lat = coord.lat;
+            // console.log(lon, lat)
+            var uvqueryURL = "http://api.openweathermap.org/data/2.5/uvi?appid=d22597ee61aff6bbcc1f2596e17825af&lat="+lat+"&lon="+lon+"";
+
+        $.ajax({
+            url: uvqueryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                console.log("UV: ", response);
+
+                var uvIndex = response.value;
+
+                $("#UV").text("UV Index: " + uvIndex);
+            })
 
 
-            console.log(response);
+            console.log("city: ", response);
+        })
+
+    var dayqueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=d22597ee61aff6bbcc1f2596e17825af";
+
+    $.ajax({
+        url: dayqueryURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            console.log("5 day forcast: ", response);
         })
 }

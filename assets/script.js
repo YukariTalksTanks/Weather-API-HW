@@ -1,9 +1,9 @@
 function searchsubmit() {
 
-    // var city = document.getElementById("citysearch").value;
-    // console.log(city);
+    var city = document.getElementById("citysearch").value;
+    console.log(city);
 
-    var city = "Atlanta";
+    // var city = "Atlanta";
 
     var APIKEY = "d22597ee61aff6bbcc1f2596e17825af"
     var mainqueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d22597ee61aff6bbcc1f2596e17825af";
@@ -64,6 +64,7 @@ function searchsubmit() {
     })
         .then(function (response) {
             console.log("5 day forcast: ", response);
+            $(".col-sm").remove();
             // I need to dig into the list array in the 5 day forcast console. but that shish is hard
             // also its 1am so ill take a break now for sleep. Ill see if I can get help in office hours.
             for (var i = 0; i < 40; i++) {
@@ -72,19 +73,25 @@ function searchsubmit() {
                 if (list.dt_txt.indexOf("15:00:00") !== -1) {
                     console.log(list);
                     var main = list.main;
+                    console.log(list.dt_txt.slice(""));
                 var k = main.temp;
                 var tempF = Math.floor(((k - 273.15) * 1.8) + 32);
-                var temperature = "Temperature: " + tempF;
+                var temperature = "Temp: " + tempF;
 
                 var Humidity = main.humidity;
+                
+                var date = list.dt_txt;
 
-                var wind = response.wind;
+                var wind = list.wind.speed;
                 console.log("this is forecast temp: ", temperature)
                 var colHold = $("<div>").addClass("col-sm");
                 var minBox = $("<div>").addClass("mini-box");
+                var pDate = $("<p>").text(date);
                 var pTemp = $("<p>").text(temperature);
+                var pHumidity = $("<p>").text("Humidity:" + Humidity);
+                var pWind = $("<p>").text("Wind Speed:" + wind);
 
-                $("#daycast").append(colHold.append(minBox.append(pTemp)))
+                $("#daycast").append(colHold.append(minBox.append(pDate,pTemp,pHumidity,pWind)));
                 }
 
                 // var main = list.main;

@@ -18,13 +18,13 @@
 </head>
 
 <body>
-
+    <!-- Done v -->
     <header id=header>
         <p>Weather Dashboard</p>
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-sm" id="search">
+            <div class="col-sm-4" id="search">
                 <form>
                     <div class="form-group">
                         <label for="citysearch">Search for a City</label>
@@ -35,10 +35,11 @@
                         <input type="button" value="Submit" onclick="searchsubmit()">
                     </div>
                 </form>
-
+                <!-- Done ^ -->
                 <div class="row" id="history"></div>
             </div>
-            <div class="col-sm" id="weathercard">
+            <!-- Done v -->
+            <div class="col-sm-8" id="weathercard">
                 <div class="card">
                     <div class="card-body">
                         <div class="row" id="cityDate">
@@ -57,26 +58,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- Done ^ -->
                 <div class="row" id="forecasthead">
                     5-Day Forecast:
                 </div>
-                <div class="row">
-                    <div class="col-sm" id="day1">
-                        <div class="mini-box"></div>
-                    </div>
-                    <div class="col-sm" id="day2">
-                        <div class="mini-box"></div>
-                    </div>
-                    <div class="col-sm" id="day3">
-                        <div class="mini-box"></div>
-                    </div>
-                    <div class="col-sm" id="day4">
-                        <div class="mini-box"></div>
-                    </div>
-                    <div class="col-sm" id="day5">
-                        <div class="mini-box"></div>
-                    </div>
-                </div>
+                <div class="row" id="daycast"></div>
             </div>
         </div>
     </div>
